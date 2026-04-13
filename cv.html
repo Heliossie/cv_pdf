@@ -1,0 +1,639 @@
+<!doctype html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>CV - Franck Rousseau</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+	<style>
+		:root {
+			--bg-1: #04142f;
+			--bg-2: #0b2454;
+			--panel: rgba(13, 30, 70, 0.82);
+			--line: rgba(116, 180, 255, 0.25);
+			--text: #dce8ff;
+			--muted: #9db5e7;
+			--accent: #68b8ff;
+			--accent-2: #9dd2ff;
+			--chip: rgba(126, 174, 255, 0.2);
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		body {
+			margin: 0;
+			min-height: 100vh;
+			display: grid;
+			place-items: center;
+			background:
+				radial-gradient(circle at 20% 18%, rgba(167, 194, 255, 0.26), transparent 30%),
+				radial-gradient(circle at 82% 15%, rgba(131, 179, 255, 0.22), transparent 27%),
+				linear-gradient(130deg, #d9dee7 0%, #cfd5df 36%, #dbe1ea 100%);
+			font-family: "Poppins", sans-serif;
+			color: var(--text);
+			padding: 1rem;
+		}
+
+		.toolbar {
+			position: fixed;
+			top: 18px;
+			right: 18px;
+			z-index: 50;
+			display: flex;
+			gap: 0.6rem;
+		}
+
+		.btn {
+			border: 0;
+			border-radius: 999px;
+			padding: 0.7rem 1.1rem;
+			font-weight: 700;
+			cursor: pointer;
+			color: #05204c;
+			background: linear-gradient(125deg, #7ec8ff 0%, #d7f0ff 100%);
+			box-shadow: 0 8px 25px rgba(58, 132, 222, 0.45);
+		}
+
+		.cv-sheet {
+			width: min(794px, 100%);
+			min-height: 1123px;
+			padding: 26px;
+			border-radius: 26px;
+			border: 1px solid rgba(142, 187, 255, 0.33);
+			background:
+				radial-gradient(circle at 42% 0%, rgba(112, 188, 255, 0.28), transparent 38%),
+				radial-gradient(circle at 75% 78%, rgba(95, 153, 255, 0.2), transparent 35%),
+				linear-gradient(160deg, var(--bg-2) 0%, var(--bg-1) 55%, #020d21 100%);
+			box-shadow: 0 28px 55px rgba(9, 17, 36, 0.42);
+			position: relative;
+			overflow: hidden;
+		}
+
+		.cv-sheet::before {
+			content: "";
+			position: absolute;
+			inset: 0;
+			background: radial-gradient(circle at 30% 45%, rgba(116, 177, 255, 0.2), transparent 18%),
+									radial-gradient(circle at 62% 63%, rgba(157, 210, 255, 0.17), transparent 20%);
+			pointer-events: none;
+			mix-blend-mode: screen;
+		}
+
+		.content {
+			position: relative;
+			z-index: 2;
+			display: grid;
+			gap: 16px;
+		}
+
+		.panel {
+			background: var(--panel);
+			border: 1px solid var(--line);
+			border-radius: 20px;
+			padding: 18px;
+			backdrop-filter: blur(3px);
+		}
+
+		.header {
+			display: flex;
+			justify-content: space-between;
+			align-items: start;
+			gap: 1rem;
+		}
+
+			h1 {
+			margin: 0;
+			font-family: "Poppins", sans-serif;
+			letter-spacing: 0.04em;
+			font-size: 2rem;
+		}
+
+		.subtitle {
+			color: var(--muted);
+			margin-top: 0.25rem;
+			font-size: 1.05rem;
+		}
+
+		.contact-btn {
+			background: linear-gradient(125deg, #4f8bff 0%, #a7d8ff 100%);
+			color: #eff7ff;
+			border: 0;
+			border-radius: 999px;
+			padding: 0.68rem 1.2rem;
+			font-weight: 700;
+		}
+
+		.quick-contact {
+			display: grid;
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 12px;
+			color: var(--muted);
+			font-weight: 500;
+			font-size: 0.95rem;
+		}
+
+		.quick-contact div {
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+
+		.section-title {
+			margin: 0 0 10px 0;
+			color: #8bc2ff;
+			font-size: 0.85rem;
+			letter-spacing: 0.09em;
+			text-transform: uppercase;
+		}
+
+		.about {
+			display: grid;
+			grid-template-columns: 170px 1fr;
+			gap: 18px;
+			align-items: center;
+		}
+
+		.avatar-wrap {
+			width: 156px;
+			height: 156px;
+			border-radius: 50%;
+			padding: 9px;
+			background: linear-gradient(140deg, rgba(78, 142, 255, 0.76), rgba(132, 214, 255, 0.4));
+			box-shadow: 0 0 0 8px rgba(98, 156, 255, 0.15), 0 12px 34px rgba(26, 63, 135, 0.5);
+			margin: 0 auto;
+		}
+
+		.avatar {
+			width: 100%;
+			height: 100%;
+			border-radius: 50%;
+			object-fit: cover;
+			object-position: center;
+			border: 2px solid rgba(216, 238, 255, 0.35);
+		}
+
+		.about p {
+			margin: 0.25rem 0;
+			color: #c9dbff;
+			line-height: 1.45;
+			font-size: 1.01rem;
+		}
+
+		.skills-grid {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 11px;
+		}
+
+		.skill {
+			border: 1px solid var(--line);
+			border-radius: 16px;
+			padding: 11px 12px;
+			background: rgba(90, 142, 243, 0.12);
+		}
+
+		.skill-top {
+			display: flex;
+			align-items: center;
+			gap: 0.55rem;
+			margin-bottom: 4px;
+		}
+
+		.skill-dot {
+			width: 24px;
+			height: 24px;
+			border-radius: 50%;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 0.78rem;
+			font-weight: 700;
+			color: #eaf3ff;
+			background: linear-gradient(140deg, #66b2ff 0%, #93dbff 100%);
+			box-shadow: inset 0 0 0 1px rgba(220, 240, 255, 0.35);
+		}
+
+		.skill strong {
+			display: block;
+			font-size: 1.05rem;
+			margin-bottom: 4px;
+		}
+
+		.skill-top strong {
+			margin-bottom: 0;
+		}
+
+		.skill span {
+			color: var(--muted);
+		}
+        .color-dot{
+            color: #FFFFFF !important;
+        }
+		.project h3 {
+			margin: 0;
+			font-size: 1.2rem;
+			font-family: "Poppins", sans-serif;
+			letter-spacing: 0.01em;
+		}
+
+		.project-item + .project-item {
+			margin-top: 14px;
+			padding-top: 14px;
+			border-top: 1px solid var(--line);
+		}
+
+		.project h4 {
+			margin: 8px 0 4px;
+			font-size: 1rem;
+			color: #dce8ff;
+		}
+
+		.chips {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 8px;
+			margin: 11px 0;
+		}
+
+		.chip {
+			border-radius: 999px;
+			border: 1px solid rgba(152, 195, 255, 0.4);
+			background: var(--chip);
+			padding: 0.28rem 0.65rem;
+			color: #d7e8ff;
+			font-size: 0.86rem;
+			line-height: 1;
+		}
+
+		.project p {
+			color: #c7daff;
+			margin: 0.35rem 0;
+			line-height: 1.45;
+		}
+
+		.tech-line {
+			font-size: 0.92rem;
+			color: #b8d0f8;
+		}
+
+		.tech-line strong {
+			color: #dce8ff;
+		}
+
+		.project-meta {
+			display: flex;
+			justify-content: space-between;
+			color: var(--muted);
+			font-weight: 600;
+			margin-top: 0.6rem;
+		}
+
+		.bottom-grid {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 12px;
+		}
+
+		.formation strong,
+		.soft-skills strong {
+			display: block;
+			font-size: 1.1rem;
+			margin-bottom: 6px;
+		}
+
+		.formation p {
+			margin: 0.2rem 0;
+			color: var(--muted);
+		}
+
+		.soft-list {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 7px;
+		}
+
+		.soft-list span {
+			background: var(--chip);
+			border: 1px solid var(--line);
+			color: #d9e9ff;
+			border-radius: 999px;
+			padding: 0.35rem 0.7rem;
+			font-weight: 600;
+			font-size: 0.87rem;
+		}
+
+		@media (max-width: 860px) {
+			body {
+				padding: 0.3rem;
+			}
+
+			.cv-sheet {
+				border-radius: 16px;
+				padding: 14px;
+				min-height: auto;
+			}
+
+			.quick-contact {
+				grid-template-columns: 1fr;
+			}
+
+			.about {
+				grid-template-columns: 1fr;
+			}
+
+			.skills-grid,
+			.bottom-grid {
+				grid-template-columns: 1fr;
+			}
+
+			h1 {
+				font-size: 1.4rem;
+			}
+		}
+
+		@media print {
+			@page {
+				size: A4;
+				margin: 0;
+			}
+
+			body {
+				background: #ffffff;
+				padding: 0;
+				display: block;
+				font-size: 93%;
+				print-color-adjust: exact;
+				-webkit-print-color-adjust: exact;
+			}
+
+			.toolbar {
+				display: none;
+			}
+
+			.cv-sheet {
+				width: 210mm;
+				height: 297mm;
+				min-height: 297mm;
+				padding: 10mm 9mm;
+				border-radius: 0;
+				margin: 0;
+				box-shadow: none;
+				display: flex;
+				flex-direction: column;
+			}
+
+			.content {
+				flex: 1;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				gap: 0;
+			}
+
+			.panel {
+				padding: 12px 15px;
+				border-radius: 14px;
+			}
+
+			h1 {
+				font-size: 1.55rem;
+			}
+
+			.subtitle {
+				font-size: 0.92rem;
+			}
+
+			.section-title {
+				margin: 0 0 6px 0;
+				font-size: 0.73rem;
+			}
+
+			.quick-contact {
+				grid-template-columns: repeat(3, minmax(0, 1fr));
+				gap: 8px;
+				font-size: 0.83rem;
+			}
+
+			.about {
+				grid-template-columns: 130px 1fr;
+				gap: 12px;
+			}
+
+			.avatar-wrap {
+				width: 118px;
+				height: 118px;
+			}
+
+			.about p {
+				font-size: 0.9rem;
+				line-height: 1.34;
+				margin: 0.18rem 0;
+			}
+
+			.skills-grid {
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+				gap: 10px;
+			}
+
+			.skill {
+				padding: 11px 12px;
+			}
+
+			.skill-dot {
+				width: 20px;
+				height: 20px;
+				font-size: 0.68rem;
+			}
+
+			.skill strong {
+				font-size: 0.95rem;
+			}
+
+			.skill span {
+				font-size: 0.84rem;
+			}
+
+			.project h3 {
+				font-size: 1.02rem;
+			}
+
+			.project h4 {
+				font-size: 0.9rem;
+				margin: 6px 0 2px;
+			}
+
+			.project-item + .project-item {
+				margin-top: 12px;
+				padding-top: 12px;
+			}
+
+			.project p {
+				font-size: 0.86rem;
+				line-height: 1.4;
+				margin: 0.3rem 0;
+			}
+
+			.project-meta {
+				font-size: 0.82rem;
+				margin-top: 0.35rem;
+			}
+
+			.tech-line {
+				font-size: 0.81rem;
+			}
+
+			.bottom-grid {
+				grid-template-columns: 1fr 1fr;
+				gap: 10px;
+			}
+
+			.formation strong,
+			.soft-skills strong {
+				font-size: 0.95rem;
+				margin-bottom: 6px;
+			}
+
+			.formation p {
+				font-size: 0.83rem;
+				margin: 0.2rem 0;
+			}
+
+			.soft-list {
+				gap: 5px;
+			}
+
+			.soft-list span {
+				font-size: 0.77rem;
+				padding: 0.24rem 0.52rem;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="toolbar">
+		<button class="btn" type="button" onclick="window.print()">Exporter PDF</button>
+	</div>
+
+	<main class="cv-sheet" aria-label="CV de Franck Rousseau">
+		<div class="content">
+			<section class="panel">
+				<div class="header">
+					<div>
+						<h1>FRANCK ROUSSEAU</h1>
+						<div class="subtitle">Developpeur web fullstack</div>
+					</div>
+					<!-- <button class="contact-btn" type="button">Contact</button> -->
+				</div>
+
+				<hr style="border-color: var(--line); border-width: 1px 0 0; margin: 14px 0;" />
+
+				<div class="quick-contact">
+					<div>📧 franck.rousseau@ik.me</div>
+					<div>🌐 franck-rousseau.fr</div>
+					<div>📍 Nantes, France</div>
+				</div>
+			</section>
+
+			<section class="panel about">
+				<div class="avatar-wrap">
+					<img class="avatar" src="Portrait professionnel dans un bureau moderne_pic.png" alt="Photo de Franck Rousseau" />
+				</div>
+				<div>
+					<h2 class="section-title">À propos</h2>
+					<p>Developpeur web fullstack specialise dans la creation d applications modernes, performantes et evolutives.</p>
+					<p>J accompagne entreprises et independants dans leurs projets digitaux.</p>
+				</div>
+			</section>
+
+			<section class="panel">
+				<h2 class="section-title">Compétences</h2>
+				<div class="skills-grid">
+					<article class="skill">
+						<div class="skill-top">
+							<span class="skill-dot color-dot">N</span>
+							<strong>NuxtJS / Vue</strong>
+						</div>
+						<span>Front-end moderne et interactif</span>
+					</article>
+					<article class="skill">
+						<div class="skill-top">
+							<span class="skill-dot color-dot">N</span>
+							<strong>NodeJS</strong>
+						</div>
+						<span>API performantes et back-end scalable</span>
+					</article>
+					<article class="skill">
+						<div class="skill-top">
+							<span class="skill-dot color-dot">P</span>
+							<strong>PHP / Symfony</strong>
+						</div>
+						<span>Applications robustes et evolutives</span>
+					</article>
+					<article class="skill">
+						<div class="skill-top">
+							<span class="skill-dot color-dot">W</span>
+							<strong>WordPress</strong>
+						</div>
+						<span>Sites administrables et sur-mesure</span>
+					</article>
+				</div>
+			</section>
+
+			<section class="panel project">
+				<h2 class="section-title">Expériences</h2>
+				<article class="project-item">
+					<h3>Developpeur Web FullStack</h3>
+					<div class="project-meta">
+						<span>Impro Solutions</span>
+						<span>Depuis 2021</span>
+					</div>
+					<p>Gestion du pole developpement web, tuteur d apprentissage / stage.</p>
+					<p>Conception, developpement et maintenance d applications web, sites web et newsletters.</p>
+					<p class="tech-line"><strong>Technologies :</strong> VueJS, NuxtJS, NodeJS, PHP, Symfony, HTML, CSS, JavaScript, TailwindCSS</p>
+				</article>
+
+				<article class="project-item">
+					<h3>Developpeur Web FullStack</h3>
+					<div class="project-meta">
+						<span>Projets personnels</span>
+						<span>En continu</span>
+					</div>
+
+					<h4>SII App</h4>
+					<p class="tech-line"><strong>Technologies :</strong> Nuxt3, Nuxt UI, TailwindCSS, MySQL, SQLite, Prisma</p>
+
+					<h4>Gplanet</h4>
+					<p class="tech-line"><strong>Technologies :</strong> Symfony, VueJS, MySQL, TailwindCSS, FullCalendar</p>
+
+					<h4>Portfolio</h4>
+					<p class="tech-line"><strong>Technologies :</strong> Nuxt 3, Nuxt Content, Nuxt UI, TailwindCSS</p>
+				</article>
+			</section>
+
+			<section class="bottom-grid">
+				<article class="panel formation">
+					<h2 class="section-title">Formation</h2>
+					<strong>Developpeur Web FullStack</strong>
+					<p>Diginamic - 2021</p>
+					<p>Saint-Herblain</p>
+				</article>
+
+				<article class="panel soft-skills">
+					<h2 class="section-title">Soft Skills</h2>
+					<div class="soft-list">
+						<span>Esprit d'analyse</span>
+						<span>Autonomie</span>
+						<span>Rigueur</span>
+						<span>Empathie</span>
+						<span>Adaptabilité</span>
+					</div>
+				</article>
+			</section>
+		</div>
+	</main>
+</body>
+</html>
